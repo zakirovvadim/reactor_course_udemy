@@ -11,7 +11,6 @@ public class Lec10StartPriceAssignment {
 
     public static void main(String[] args) throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
-        Flux.range()
         StockPricePubsher.getPrice()
                 .subscribeWith(new Subscriber<Integer>() {
                     Subscription sub;
