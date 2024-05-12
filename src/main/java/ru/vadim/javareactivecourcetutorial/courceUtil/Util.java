@@ -24,4 +24,10 @@ public class Util {
         return FAKER;
     }
 
+    public static DefaultSubscriber subscriber(String name) {
+        return new DefaultSubscriber(name);
+    }
+    public static DefaultSubscriber subscriber() {
+        return new DefaultSubscriber();
+    }
 }

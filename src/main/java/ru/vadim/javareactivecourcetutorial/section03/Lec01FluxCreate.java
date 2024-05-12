@@ -1,8 +1,6 @@
 package ru.vadim.javareactivecourcetutorial.section03;
 
 import reactor.core.publisher.Flux;
-import ru.vadim.javareactivecourcetutorial.courceUtil.DeafultSubscriber;
-import ru.vadim.javareactivecourcetutorial.courceUtil.Util;
 import ru.vadim.javareactivecourcetutorial.section03.producer.NameProducer;
 
 import static ru.vadim.javareactivecourcetutorial.courceUtil.Util.*;

@@ -4,25 +4,23 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.reactivestreams.Subscriber;
-
-import java.util.concurrent.Flow;
+import org.reactivestreams.Subscription;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class DeafultSubscriber implements Flow.Subscriber {
+public class DefaultSubscriber implements Subscriber<Object> {
 
-    private String name = "";
-
+    private String name;
 
     @Override
-    public void onSubscribe(Flow.Subscription subscription) {
+    public void onSubscribe(Subscription subscription) {
         subscription.request(Long.MAX_VALUE);
     }
 
     @Override
-    public void onNext(Object item) {
-        System.out.println(name + " - Received : " + item);
+    public void onNext(Object o) {
+        System.out.println(name + " - Received " + o);
     }
 
     @Override
@@ -32,10 +30,6 @@ public class DeafultSubscriber implements Flow.Subscriber {
 
     @Override
     public void onComplete() {
-        System.out.println(name + " - Completed : ");
-    }
-
-    public static Flow.Subscriber<Object> subscriber(String name) {
-        return new DeafultSubscriber(name);
+        System.out.println(name + " - Completed");
     }
 }
