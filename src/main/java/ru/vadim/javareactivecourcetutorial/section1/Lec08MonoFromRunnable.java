@@ -19,6 +19,7 @@ public class Lec08MonoFromRunnable {
     private static Runnable timeConsumingProcess() {
         return () -> {
             try {
+                System.out.println("RUn");
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
