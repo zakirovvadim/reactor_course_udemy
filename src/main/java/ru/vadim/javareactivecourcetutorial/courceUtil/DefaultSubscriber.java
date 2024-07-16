@@ -9,7 +9,7 @@ import org.reactivestreams.Subscription;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class DefaultSubscriber implements Subscriber<Object> {
+public class DefaultSubscriber<T> implements Subscriber<Object> {
 
     private String name;
 
@@ -30,6 +30,6 @@ public class DefaultSubscriber implements Subscriber<Object> {
 
     @Override
     public void onComplete() {
-        System.out.println(name + " - Completed");
+//        System.out.println(name + " - Completed");
     }
 }

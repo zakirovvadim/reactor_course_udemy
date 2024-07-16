@@ -2,6 +2,7 @@ package ru.vadim.javareactivecourcetutorial.courceUtil;
 
 import com.github.javafaker.Faker;
 
+import java.time.Duration;
 import java.util.function.Consumer;
 
 public class Util {
@@ -29,5 +30,13 @@ public class Util {
     }
     public static DefaultSubscriber subscriber() {
         return new DefaultSubscriber();
+    }
+
+    public static void sleepSeconds(long seconds) {
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
