@@ -1,17 +1,20 @@
 package ru.vadim.javareactivecourcetutorial.courceUtil;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
-public class DefaultSubscriber<T> implements Subscriber<Object> {
+public class DefaultSubscriber<T> implements Subscriber<T> {
 
     private String name;
+
+    public DefaultSubscriber() {
+    }
+
+    public DefaultSubscriber(String name) {
+        this.name = name;
+    }
 
     @Override
     public void onSubscribe(Subscription subscription) {
@@ -19,7 +22,7 @@ public class DefaultSubscriber<T> implements Subscriber<Object> {
     }
 
     @Override
-    public void onNext(Object o) {
+    public void onNext(T o) {
         System.out.println(name + " - Received " + o);
     }
 
@@ -30,6 +33,6 @@ public class DefaultSubscriber<T> implements Subscriber<Object> {
 
     @Override
     public void onComplete() {
-//        System.out.println(name + " - Completed");
+        System.out.println(name + " - Completed");
     }
 }

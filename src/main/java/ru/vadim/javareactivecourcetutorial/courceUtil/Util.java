@@ -28,6 +28,7 @@ public class Util {
     public static DefaultSubscriber subscriber(String name) {
         return new DefaultSubscriber(name);
     }
+
     public static DefaultSubscriber subscriber() {
         return new DefaultSubscriber();
     }

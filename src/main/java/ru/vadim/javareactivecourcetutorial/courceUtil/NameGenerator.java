@@ -24,7 +24,7 @@ public class NameGenerator {
 
     private static String getName() {
         try {
-            Thread.sleep(3000);
+            Thread.sleep(1);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
