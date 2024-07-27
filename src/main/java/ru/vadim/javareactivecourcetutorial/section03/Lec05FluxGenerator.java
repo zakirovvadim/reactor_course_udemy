@@ -6,11 +6,16 @@ import ru.vadim.javareactivecourcetutorial.courceUtil.Util;
 import static ru.vadim.javareactivecourcetutorial.courceUtil.Util.faker;
 import static ru.vadim.javareactivecourcetutorial.courceUtil.Util.onNext;
 
-// Тут используем генератор, и он уже обеспечивает передачу нам каждый раз нового экземпляра synchronousSink. И сам овтечает за цикл.
-// Без take или ошибки или complete внутри synchronousSink будет выоплняться бесконечно, т.е. бвсе время выдавать нвоый экземпляр
+/* Тут используем генератор, и он уже обеспечивает передачу нам каждый раз нового экземпляра synchronousSink. И сам овтечает за цикл.
+ Без take или ошибки или complete внутри synchronousSink будет выоплняться бесконечно, т.е. бвсе время выдавать нвоый экземпляр
+synchronousSink - по сути это высокоуровнеая реализация for (int i= 0; i < число; i++), если мы пропишем take(3), то форич будет
+крутится 3 раза. СинхронайзСинк отправляет по одному элементу, и если в нем же мы завершим сообщение complete(), тогда поток сообщение закончится
+раньше, чем например если укажем take(4).
+*/
 public class Lec05FluxGenerator {
 
     public static void main(String[] args) {
+        createToRange2();
 //        Flux.generate(synchronousSink -> {
 //                    System.out.println("emitting");
 //                    synchronousSink.next(Util.faker().country().name());
@@ -20,19 +25,39 @@ public class Lec05FluxGenerator {
 
 
         // еще один пример
+//        Flux.generate(synchronousSink -> {
+//            String name = faker().country().name();
+//            synchronousSink.next(name);
+//        })
+//                .map(Object::toString)
+//                .handle((name, sync) -> {
+//            if (name.equalsIgnoreCase("russian federation")) {
+//                sync.next(name);
+//                sync.complete();
+//            } else {
+//                sync.next(name);
+//            }
+//        })
+//                .subscribe(onNext());
+    }
+
+    // new cource - assingment
+    private static void createToRange() {
         Flux.generate(synchronousSink -> {
-            String name = faker().country().name();
-            synchronousSink.next(name);
-        })
-                .map(Object::toString)
-                .handle((name, sync) -> {
-            if (name.equalsIgnoreCase("russian federation")) {
-                sync.next(name);
-                sync.complete();
-            } else {
-                sync.next(name);
+            String country = faker().country().name();
+            synchronousSink.next(country);
+            if (country.equalsIgnoreCase("canada")) {
+                synchronousSink.complete();
             }
-        })
-                .subscribe(onNext());
+        }).subscribe(Util.subscriber());
+    }
+
+    private static void createToRange2() {
+        Flux.<String>generate(synchronousSink -> {
+                    String country = faker().country().name();
+                    synchronousSink.next(country);
+                })
+                .takeUntil(c -> c.equalsIgnoreCase("canada")) //в  отличие от примера выше, вместо условия if (country.equalsIgnoreCase("canada")), можем просто вызвать такеАнтил
+                .subscribe(Util.subscriber());
     }
 }

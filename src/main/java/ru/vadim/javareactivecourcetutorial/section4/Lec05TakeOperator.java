@@ -1,4 +1,4 @@
-package ru.vadim.javareactivecourcetutorial.section03;
+package ru.vadim.javareactivecourcetutorial.section4;
 
 import reactor.core.publisher.Flux;
 import ru.vadim.javareactivecourcetutorial.courceUtil.Util;
