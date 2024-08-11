@@ -51,4 +51,11 @@ public class ExternalServiceClient extends AbstractHttpClient {
                 .responseContent()
                 .asString();
     }
+
+    public Flux<String> getOrdersStream() {
+        return this.httpClient.get()
+                .uri("/demo04/orders/stream")
+                .responseContent()
+                .asString();
+    }
 }
