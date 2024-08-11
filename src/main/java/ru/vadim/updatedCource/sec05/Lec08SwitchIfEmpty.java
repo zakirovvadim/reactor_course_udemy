@@ -1,4 +1,4 @@
-package ru.vadim.javareactivecourcetutorial.sec05;
+package ru.vadim.updatedCource.sec05;
 
 import reactor.core.publisher.Flux;
 import ru.vadim.updatedCource.common.Util;

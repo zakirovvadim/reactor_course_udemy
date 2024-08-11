@@ -1,4 +1,4 @@
-package ru.vadim.javareactivecourcetutorial.sec05;
+package ru.vadim.updatedCource.sec05;
 
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;

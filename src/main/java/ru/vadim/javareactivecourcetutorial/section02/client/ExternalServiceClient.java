@@ -4,6 +4,9 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ru.vadim.javareactivecourcetutorial.courceUtil.AbstractHttpClient;
 
+import java.net.URI;
+import java.net.http.HttpRequest;
+
 public class ExternalServiceClient extends AbstractHttpClient {
 
     public Mono<String> getProductName(int productId) {
@@ -23,7 +26,28 @@ public class ExternalServiceClient extends AbstractHttpClient {
 
     public Flux<String> getCurrency() {
         return this.httpClient.get()
-                .uri("http://localhost:8090/demo02/stock/stream")
+                .uri("http://localhost:8070/demo02/stock/stream")
+                .responseContent()
+                .asString();
+    }
+
+    public Flux<String> getProductService(Integer id) {
+        return this.httpClient.get()
+                .uri("http://localhost:8070/demo03/product/" + id)
+                .responseContent()
+                .asString();
+    }
+
+    public Flux<String> getEmptyFallbackProduct(Integer id) {
+        return this.httpClient.get()
+                .uri("http://localhost:8070/demo03/empty-fallback/product/" + id)
+                .responseContent()
+                .asString();
+    }
+
+    public Flux<String> getTimeoutFallbackProduct(Integer id) {
+        return this.httpClient.get()
+                .uri("http://localhost:8070/demo03/timeout-fallback/product/" + id)
                 .responseContent()
                 .asString();
     }

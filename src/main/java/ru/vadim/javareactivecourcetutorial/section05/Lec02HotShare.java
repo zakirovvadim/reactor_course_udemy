@@ -15,12 +15,12 @@ public class Lec02HotShare {
     public static void main(String[] args) throws InterruptedException {
 
         Flux<String> netflix = Flux.fromStream(Lec02HotShare::getStream)
-                .delayElements(Duration.ofSeconds(2))
+                .delayElements(Duration.ofSeconds(1))
                 .share(); // для горячей публикации
 
         netflix.subscribe(subscriber("Vadim"));
 
-        Thread.sleep(5);
+        Thread.sleep(3000);
 
         netflix.subscribe(subscriber("Nastya"));
 
