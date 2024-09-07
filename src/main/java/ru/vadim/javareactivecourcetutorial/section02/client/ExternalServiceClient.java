@@ -3,6 +3,7 @@ package ru.vadim.javareactivecourcetutorial.section02.client;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ru.vadim.javareactivecourcetutorial.courceUtil.AbstractHttpClient;
+import ru.vadim.updatedCource.common.Util;
 
 import java.net.URI;
 import java.net.http.HttpRequest;
@@ -57,5 +58,29 @@ public class ExternalServiceClient extends AbstractHttpClient {
                 .uri("/demo04/orders/stream")
                 .responseContent()
                 .asString();
+    }
+
+    public Mono<String> demo05GetProduct(Integer id) {
+        return this.httpClient.get()
+                .uri("/demo05/product/" + id)
+                .responseContent()
+                .asString()
+                .next();
+    }
+
+    public Mono<String> demo05GetPrice(Integer id) {
+        return this.httpClient.get()
+                .uri("/demo05/price/" + id)
+                .responseContent()
+                .asString()
+                .next();
+    }
+
+    public Mono<String> demo05GetReview(Integer id) {
+        return this.httpClient.get()
+                .uri("/demo05/review/" + id)
+                .responseContent()
+                .asString()
+                .next();
     }
 }
