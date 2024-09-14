@@ -3,10 +3,7 @@ package ru.vadim.javareactivecourcetutorial.section02.client;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ru.vadim.javareactivecourcetutorial.courceUtil.AbstractHttpClient;
-import ru.vadim.updatedCource.common.Util;
-
-import java.net.URI;
-import java.net.http.HttpRequest;
+import ru.vadim.javareactivecourcetutorial.sec09.helper.Product;
 
 public class ExternalServiceClient extends AbstractHttpClient {
 
@@ -20,38 +17,39 @@ public class ExternalServiceClient extends AbstractHttpClient {
 
     public Flux<String> getNames() {
         return this.httpClient.get()
-                .uri("http://localhost:8070/demo02/name/stream")
+                .uri("http://localhost:8080/demo02/name/stream")
                 .responseContent()
                 .asString();
     }
 
     public Flux<String> getCurrency() {
         return this.httpClient.get()
-                .uri("http://localhost:8070/demo02/stock/stream")
+                .uri("http://localhost:8080/demo02/stock/stream")
                 .responseContent()
                 .asString();
     }
 
     public Flux<String> getProductService(Integer id) {
         return this.httpClient.get()
-                .uri("http://localhost:8070/demo03/product/" + id)
+                .uri("http://localhost:8080/demo03/product/" + id)
                 .responseContent()
                 .asString();
     }
 
     public Flux<String> getEmptyFallbackProduct(Integer id) {
         return this.httpClient.get()
-                .uri("http://localhost:8070/demo03/empty-fallback/product/" + id)
+                .uri("http://localhost:8080/demo03/empty-fallback/product/" + id)
                 .responseContent()
                 .asString();
     }
 
     public Flux<String> getTimeoutFallbackProduct(Integer id) {
         return this.httpClient.get()
-                .uri("http://localhost:8070/demo03/timeout-fallback/product/" + id)
+                .uri("http://localhost:8080/demo03/timeout-fallback/product/" + id)
                 .responseContent()
                 .asString();
     }
+
 
     public Flux<String> getOrdersStream() {
         return this.httpClient.get()
@@ -60,27 +58,33 @@ public class ExternalServiceClient extends AbstractHttpClient {
                 .asString();
     }
 
-    public Mono<String> demo05GetProduct(Integer id) {
+    public Mono<String> getProductName(Integer id) {
+        return get("/demo05/product/" + id);
+    }
+
+    public Mono<String> getPrice(Integer id) {
+        return get("/demo05/price/" + id);
+    }
+
+    public Mono<String> getReview(Integer id) {
+        return get("/demo05/review/" + id);
+    }
+
+    public Mono<String> get(String path) {
         return this.httpClient.get()
-                .uri("/demo05/product/" + id)
+                .uri(path)
                 .responseContent()
                 .asString()
                 .next();
     }
 
-    public Mono<String> demo05GetPrice(Integer id) {
-        return this.httpClient.get()
-                .uri("/demo05/price/" + id)
-                .responseContent()
-                .asString()
-                .next();
+    public Mono<Product> getProduct(int productId) {
+        return Mono.zip(
+                        getProductName(productId),
+                        getPrice(productId),
+                        getReview(productId)
+                )
+                .map(t -> new Product(t.getT1(), t.getT2(), t.getT3()));
     }
 
-    public Mono<String> demo05GetReview(Integer id) {
-        return this.httpClient.get()
-                .uri("/demo05/review/" + id)
-                .responseContent()
-                .asString()
-                .next();
-    }
 }

@@ -23,6 +23,7 @@ public class DefaultSubscriber<T> implements Subscriber<T> {
 
     @Override
     public void onNext(T o) {
+        if (name == null) name = Thread.currentThread().getName();
         System.out.println(name + " - Received " + o);
     }
 

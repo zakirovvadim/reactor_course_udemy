@@ -24,7 +24,8 @@ public class OrderService {
 
     public static Flux<Order> getUserOrder(Integer userId) {
         return Flux.fromIterable(orderTable.get(userId))
-                .delayElements(Duration.ofMillis(500));
+                .delayElements(Duration.ofMillis(500))
+                .transform(Util.fluxLogger("user" + userId ));
     }
 
 }
