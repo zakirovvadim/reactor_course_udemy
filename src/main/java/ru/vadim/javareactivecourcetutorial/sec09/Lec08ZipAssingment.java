@@ -16,7 +16,7 @@ public class Lec08ZipAssingment {
         service.demo05GetPrice(1).subscribe(Util.subscriber());
         for (int i = 0; i < 10; i++) {
             Mono.zip(service.demo05GetPrice(i), service.demo05GetProduct(i), service.demo05GetReview(i))
-                    .map()
+//                    .map(el -> )
                     .subscribe(Util.subscriber());
         }
 
