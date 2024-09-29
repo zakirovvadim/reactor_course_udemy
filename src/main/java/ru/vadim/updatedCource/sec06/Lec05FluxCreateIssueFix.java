@@ -2,7 +2,7 @@ package ru.vadim.updatedCource.sec06;
 
 import reactor.core.publisher.Flux;
 import ru.vadim.javareactivecourcetutorial.courceUtil.Util;
-import ru.vadim.javareactivecourcetutorial.section4.helper.NameGenerator;
+import ru.vadim.javareactivecourcetutorial.sec4.helper.NameGenerator;
 
 public class Lec05FluxCreateIssueFix {
     public static void main(String[] args) {

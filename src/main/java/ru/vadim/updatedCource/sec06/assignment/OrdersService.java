@@ -2,7 +2,7 @@ package ru.vadim.updatedCource.sec06.assignment;
 
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
-import ru.vadim.javareactivecourcetutorial.section02.client.ExternalServiceClient;
+import ru.vadim.javareactivecourcetutorial.sec02.client.ExternalServiceClient;
 
 @Slf4j
 public class OrdersService {

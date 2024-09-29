@@ -1,8 +1,7 @@
 package ru.vadim.javareactivecourcetutorial.sec09;
 
 
-import reactor.core.publisher.Mono;
-import ru.vadim.javareactivecourcetutorial.section02.client.ExternalServiceClient;
+import ru.vadim.javareactivecourcetutorial.sec02.client.ExternalServiceClient;
 import ru.vadim.updatedCource.common.Util;
 
 import java.time.Duration;
