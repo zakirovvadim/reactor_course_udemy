@@ -19,4 +19,20 @@ public class ExternalServiceClient extends AbstractHttpClient {
                 .next()
                 .publishOn(Schedulers.boundedElastic()); // если убрать, и консьюмер будет потреблять последовательно с задержкой, то и запросы будут идти последовательно.
     }
+
+
+
+    public Flux<String> getCountry() {
+        return this.httpClient.get()
+                .uri("/demo06/country")
+                .responseContent()
+                .asString();
+    }
+
+    public Flux<String> getProduct(int productId) {
+        return this.httpClient.get()
+                .uri("/demo06/product/" + productId)
+                .responseContent()
+                .asString();
+    }
 }
