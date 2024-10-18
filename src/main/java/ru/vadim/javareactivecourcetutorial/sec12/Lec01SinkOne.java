@@ -1,5 +1,6 @@
 package ru.vadim.javareactivecourcetutorial.sec12;
 
+import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.Sinks;
 import ru.vadim.javareactivecourcetutorial.courceUtil.Util;
@@ -8,9 +9,10 @@ import ru.vadim.javareactivecourcetutorial.courceUtil.Util;
 Таким образом, по сути, вы создаете один приемник, через который мы можем передавать данные.
 Этот же приемник может действовать как моно, через который мы можем подписываться и получать данные.
  */
+@Slf4j
 public class Lec01SinkOne {
     public static void main(String[] args) {
-        demo2();
+        demo3();
     }
 
     private static void demo1() {
@@ -27,6 +29,22 @@ public class Lec01SinkOne {
         sink.tryEmitValue("hi"); // можно вызывать независимо от порядка коде
         mono.subscribe(Util.subscriber("nastya")); // можно использовать несоклько подписчиков, работает как горячая подписка
         mono.subscribe(Util.subscriber("vadim"));
+    }
+
+    private static void demo3() {
+        Sinks.One<Object> sink = Sinks.one();
+        Mono<Object> mono = sink.asMono();
+
+        mono.subscribe(Util.subscriber("nastya"));
+
+        sink.emitValue("hi", ((signalType, emitResult) -> {
+            log.info("hi; {}; {}", signalType.name(), emitResult.name());
+            return false;
+        }));
+        sink.emitValue("hello", ((signalType, emitResult) -> {
+            log.info("hello; {}; {}", signalType.name(), emitResult.name());
+            return true;
+        }));
     }
 
 }
