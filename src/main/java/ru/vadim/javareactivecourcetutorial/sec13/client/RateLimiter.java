@@ -26,7 +26,7 @@ public class RateLimiter {
             return allowCall ? Mono.empty() : Mono.error(new RuntimeException("exceeded the given limit")); // еесли попытки есть и тру, возвращаем пустую мону с контекстом
         });
     }
-    private static boolean canAllow(String category) { // смотрим сколько попыток у пользователя, если есть, отнимаем и возвращаем тру, значит пользователь еще может потребить данные производителя
+    private static boolean canAllow(String category) { // смотрим сколько п+9опыток у пользователя, если есть, отнимаем и возвращаем тру, значит пользователь еще может потребить данные производителя
         Integer attempt = categoryAttempt.getOrDefault(category, 0);
         if (attempt > 0) {
             categoryAttempt.put(category, attempt - 1);
