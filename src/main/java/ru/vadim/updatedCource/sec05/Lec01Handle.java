@@ -1,7 +1,7 @@
 package ru.vadim.updatedCource.sec05;
 
 import reactor.core.publisher.Flux;
-import ru.vadim.javareactivecourcetutorial.courceUtil.Util;
+import ru.vadim.java.reactive.cource.tutorial.courceUtil.Util;
 /*
 Иногда нам нужно использовать какую то логику, модицируют данные и могут фильтровать, т.е. и мапа и фильтер в одном.
 Для этого можно использовать хендел. Таких модификации как oopsRange можно создавать много - они легковесны.

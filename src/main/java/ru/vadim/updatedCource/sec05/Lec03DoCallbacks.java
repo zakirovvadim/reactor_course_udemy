@@ -2,7 +2,7 @@ package ru.vadim.updatedCource.sec05;
 
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
-import ru.vadim.javareactivecourcetutorial.courceUtil.Util;
+import ru.vadim.java.reactive.cource.tutorial.courceUtil.Util;
 
 @Slf4j
 public class Lec03DoCallbacks {

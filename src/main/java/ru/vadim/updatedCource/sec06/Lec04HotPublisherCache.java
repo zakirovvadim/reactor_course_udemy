@@ -2,7 +2,7 @@ package ru.vadim.updatedCource.sec06;
 
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
-import ru.vadim.javareactivecourcetutorial.courceUtil.Util;
+import ru.vadim.java.reactive.cource.tutorial.courceUtil.Util;
 
 import java.time.Duration;
 

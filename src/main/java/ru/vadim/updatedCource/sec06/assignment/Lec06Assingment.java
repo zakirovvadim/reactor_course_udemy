@@ -1,6 +1,6 @@
 package ru.vadim.updatedCource.sec06.assignment;
 
-import ru.vadim.javareactivecourcetutorial.courceUtil.Util;
+import ru.vadim.java.reactive.cource.tutorial.courceUtil.Util;
 
 public class Lec06Assingment {
     public static void main(String[] args) {

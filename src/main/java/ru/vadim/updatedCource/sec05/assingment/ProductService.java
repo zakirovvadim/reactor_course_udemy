@@ -1,7 +1,7 @@
 package ru.vadim.updatedCource.sec05.assingment;
 
-import ru.vadim.javareactivecourcetutorial.courceUtil.Util;
-import ru.vadim.javareactivecourcetutorial.sec02.client.ExternalServiceClient;
+import ru.vadim.java.reactive.cource.tutorial.courceUtil.Util;
+import ru.vadim.java.reactive.cource.tutorial.sec02.client.ExternalServiceClient;
 
 import java.time.Duration;
 

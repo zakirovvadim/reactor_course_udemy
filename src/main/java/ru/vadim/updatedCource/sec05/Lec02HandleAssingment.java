@@ -2,7 +2,7 @@ package ru.vadim.updatedCource.sec05;
 
 import com.github.javafaker.Faker;
 import reactor.core.publisher.Flux;
-import ru.vadim.javareactivecourcetutorial.courceUtil.Util;
+import ru.vadim.java.reactive.cource.tutorial.courceUtil.Util;
 
 public class Lec02HandleAssingment {
     public static void main(String[] args) {

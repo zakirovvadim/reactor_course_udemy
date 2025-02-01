@@ -17,7 +17,7 @@ public class Lec09Timeout {
                 .timeout(Duration.ofSeconds(1), fallback()) // можем установить таймаут на получение от производителя и выполнение запасного метода
                 .subscribe(Util.subscriber());
 
-        ru.vadim.javareactivecourcetutorial.courceUtil.Util.sleepSeconds(5);
+        ru.vadim.java.reactive.cource.tutorial.courceUtil.Util.sleepSeconds(5);
 
     }
 
